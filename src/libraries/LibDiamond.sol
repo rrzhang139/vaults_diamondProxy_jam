@@ -72,7 +72,6 @@ library LibDiamond {
         address _init,
         bytes memory _calldata
     ) internal {
-        console.log("in diamond cut");
         for (
             uint256 facetIndex;
             facetIndex < _diamondCut.length;
@@ -80,8 +79,6 @@ library LibDiamond {
         ) {
             IDiamondCut.FacetCutAction action = _diamondCut[facetIndex].action;
             if (action == IDiamondCut.FacetCutAction.Add) {
-                console.log("adding");
-                console.log(_diamondCut[facetIndex].facetAddress);
                 addFunctions(
                     _diamondCut[facetIndex].facetAddress,
                     _diamondCut[facetIndex].functionSelectors

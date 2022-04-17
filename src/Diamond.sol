@@ -13,8 +13,6 @@ import {IDiamondCut} from "./interfaces/IDiamondCut.sol";
 import "forge-std/console.sol";
 
 contract Diamond {
-    uint256 public a;
-
     constructor(address _contractOwner, address _diamondCutFacet) payable {
         LibDiamond.setContractOwner(_contractOwner);
         console.log("in constructor");
@@ -48,6 +46,7 @@ contract Diamond {
         address facet = ds
             .facetAddressAndSelectorPosition[msg.sig]
             .facetAddress;
+        console.logAddress(facet);
         require(facet != address(0), "Diamond: Function does not exist");
         // Execute external function from facet using delegatecall and return any value.
         assembly {
